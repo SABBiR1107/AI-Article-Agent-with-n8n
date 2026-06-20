@@ -13,83 +13,126 @@ st.set_page_config(
 # Custom premium styling using CSS injection
 st.markdown("""
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
     
     /* Font style override */
     html, body, [class*="css"] {
-        font-family: 'Outfit', sans-serif;
+        font-family: 'Plus Jakarta Sans', sans-serif;
     }
     
-    /* Header layout */
+    /* Background enhancement */
+    .stApp {
+        background-color: #0B0F19;
+        background-image: 
+            radial-gradient(circle at 15% 50%, rgba(111, 66, 193, 0.08), transparent 25%),
+            radial-gradient(circle at 85% 30%, rgba(0, 212, 255, 0.08), transparent 25%);
+    }
+
+    /* Header Container - Glassmorphism */
     .header-container {
         text-align: center;
-        padding: 30px 10px;
-        background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.9) 100%);
-        border-radius: 16px;
+        padding: 45px 20px;
+        background: rgba(255, 255, 255, 0.02);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         border: 1px solid rgba(255, 255, 255, 0.05);
-        box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.3);
-        margin-bottom: 30px;
+        border-radius: 24px;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        margin-bottom: 40px;
+        animation: fadeInDown 0.8s ease-out;
     }
-    
+
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
     .header-title {
-        font-size: 2.4rem;
+        font-size: 3.2rem;
         font-weight: 800;
-        background: linear-gradient(90deg, #FF2E93, #FF8A00);
+        background: linear-gradient(135deg, #00C6FF 0%, #0072FF 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
+        letter-spacing: -1px;
     }
-    
+
     .header-subtitle {
-        color: #94a3b8;
-        font-size: 1.1rem;
-        font-weight: 300;
-        max-width: 600px;
+        color: #94A3B8;
+        font-size: 1.15rem;
+        font-weight: 400;
+        line-height: 1.6;
+        max-width: 650px;
         margin: 0 auto;
     }
     
-    /* Sidebar branding */
-    .sidebar-section {
-        background-color: #1e293b;
-        padding: 15px;
-        border-radius: 10px;
-        border: 1px solid #334155;
-        margin-bottom: 15px;
+    /* Input Fields Styling */
+    div[data-baseweb="input"] {
+        background-color: rgba(15, 23, 42, 0.6) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 12px !important;
+        transition: all 0.3s ease !important;
     }
     
-    /* Submit button style */
+    div[data-baseweb="input"]:focus-within {
+        border-color: #00C6FF !important;
+        box-shadow: 0 0 0 2px rgba(0, 198, 255, 0.2) !important;
+        background-color: rgba(15, 23, 42, 0.9) !important;
+    }
+
+    /* Primary Submit Button with Pulse Effect */
     div.stButton > button:first-child {
-        background: linear-gradient(90deg, #FF2E93 0%, #FF8A00 100%);
+        background: linear-gradient(135deg, #FF2E93 0%, #FF8A00 100%);
         color: white;
         font-weight: 600;
-        font-size: 1rem;
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
         border: none;
         padding: 12px 30px;
-        border-radius: 10px;
+        border-radius: 12px;
         width: 100%;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 4px 15px rgba(255, 46, 147, 0.25);
+        margin-top: 12px;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 8px 25px rgba(255, 46, 147, 0.3);
     }
     
     div.stButton > button:first-child:hover {
-        background: linear-gradient(90deg, #FF1A7D 0%, #E67E00 100%);
-        box-shadow: 0 6px 20px rgba(255, 46, 147, 0.4);
-        transform: translateY(-2px);
+        transform: translateY(-4px) scale(1.02);
+        box-shadow: 0 12px 30px rgba(255, 46, 147, 0.5);
+        background: linear-gradient(135deg, #FF1A7D 0%, #E67E00 100%);
     }
     
     div.stButton > button:first-child:active {
-        transform: translateY(0);
+        transform: translateY(0) scale(0.98);
+    }
+
+    /* Sidebar Glass Branding */
+    .sidebar-section {
+        background: rgba(30, 41, 59, 0.5);
+        backdrop-filter: blur(10px);
+        padding: 20px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        margin-bottom: 20px;
+    }
+
+    /* Custom Result Card Display */
+    .session-card {
+        background: linear-gradient(90deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.8) 100%);
+        padding: 22px;
+        border-radius: 14px;
+        border-left: 4px solid #00C6FF;
+        font-family: 'Courier New', Courier, monospace;
+        color: #38BDF8;
+        font-size: 1.1rem;
+        margin: 15px 0;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        animation: fadeIn 0.5s ease-out;
     }
     
-    /* Custom status display */
-    .session-card {
-        background-color: #0f172a;
-        padding: 18px;
-        border-radius: 10px;
-        border: 1px solid #334155;
-        font-family: monospace;
-        color: #38bdf8;
-        margin-top: 10px;
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
     }
     </style>
 """, unsafe_allow_html=True)
