@@ -137,42 +137,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Sidebar with Assignment Context
-with st.sidebar:
-    st.markdown("### 📋 Module 21 Assignment")
-    st.markdown("**AI Agent Project with n8n**")
-    st.divider()
-    
-    st.markdown("#### 🔗 Tech Stack:")
-    st.markdown("- **Frontend:** Streamlit")
-    st.markdown("- **Backend:** FastAPI")
-    st.markdown("- **Workflow:** n8n")
-    st.markdown("- **LLM:** Groq (within n8n)")
-    st.markdown("- **Scraper:** Firecrawl (within n8n)")
-    st.markdown("- **Log Store:** Google Sheets (within n8n)")
-    st.markdown("- **Notifier:** Gmail / SMTP (within n8n)")
-    
-    st.divider()
-    st.markdown("#### 🔄 Data Flow:")
-    st.code("""
-[Frontend Form]
-      │ (Email & URL)
-      ▼
-[FastAPI Backend] 
-      │ (Auth + Session UUID)
-      ▼
-[n8n Webhook]
-      │
-      ├─► [Firecrawl Scrape]
-      ├─► [Groq Summary/Insights]
-      ├─► [Google Sheets Append]
-      ├─► [Send Email]
-      ▼
-[Response to Backend]
-      │
-      ▼
-[Frontend Render]
-    """, language="text")
+
 
 # Main Header Container
 st.markdown("""
